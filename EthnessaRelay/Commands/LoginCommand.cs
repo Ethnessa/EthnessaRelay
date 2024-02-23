@@ -13,7 +13,7 @@ public class LoginCommand : DiscordCommand
     {
         Name = "login";
         Description = "Allows you to login to the server as your Ethnessa server account";
-        
+
     }
 
     public override async Task BuildCommand()
@@ -21,27 +21,28 @@ public class LoginCommand : DiscordCommand
         var command = new SlashCommandBuilder()
             .WithName(Name)
             .WithDescription(Description)
-            .AddOptions(new SlashCommandOptionBuilder()
-                .WithName("username")
-                .WithDescription("Your Ethnessa username")
-                .WithType(ApplicationCommandOptionType.String)
-                .WithRequired(true),
+            .AddOptions(
+                new SlashCommandOptionBuilder()
+                    .WithName("username")
+                    .WithDescription("Your Ethnessa username")
+                    .WithType(ApplicationCommandOptionType.String)
+                    .WithRequired(true),
                 new SlashCommandOptionBuilder()
                     .WithName("password")
                     .WithDescription("Your Ethnessa password")
                     .WithType(ApplicationCommandOptionType.String)
                     .WithRequired(true));
 
-        
+
         await AddCommand(command);
-    
+
     }
 
     public override async Task CommandHandler(SocketSlashCommand command)
     {
         var result = await UserAuthentication.AttemptUserLink(
-            command.User.Id, 
-            (string)command.Data.Options.ElementAtOrDefault(0)?.Value, 
+            command.User.Id,
+            (string)command.Data.Options.ElementAtOrDefault(0)?.Value,
             (string)command.Data.Options.ElementAtOrDefault(1)?.Value);
 
         if (result is true)

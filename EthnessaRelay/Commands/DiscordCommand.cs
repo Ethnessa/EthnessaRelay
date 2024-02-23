@@ -18,7 +18,6 @@ public abstract class DiscordCommand : IDiscordCommand
         _client = client;
         _channel = channel;
 
-        client.SlashCommandExecuted += CommandHandler;
     }
 
     public virtual Task CommandHandler(SocketSlashCommand command)

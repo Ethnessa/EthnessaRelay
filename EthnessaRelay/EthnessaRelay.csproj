@@ -13,16 +13,16 @@
 
   <ItemGroup>
     <Reference Include="EthnessaAPI">
-      <HintPath>..\..\..\..\Downloads\Ethnessa-win-x64-Release(1)\ServerPlugins\EthnessaAPI.dll</HintPath>
+      <HintPath>..\..\Downloads\Ethnessa-win-x64-Release\ServerPlugins\EthnessaAPI.dll</HintPath>
     </Reference>
     <Reference Include="OTAPI">
-      <HintPath>..\..\..\..\Downloads\Ethnessa-win-x64-Release(1)\bin\OTAPI.dll</HintPath>
+      <HintPath>..\..\Downloads\Ethnessa-win-x64-Release\bin\OTAPI.dll</HintPath>
     </Reference>
     <Reference Include="OTAPI.Runtime">
-      <HintPath>..\..\..\..\Downloads\Ethnessa-win-x64-Release(1)\bin\OTAPI.Runtime.dll</HintPath>
+      <HintPath>..\..\Downloads\Ethnessa-win-x64-Release\bin\OTAPI.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="TerrariaServer">
-      <HintPath>..\..\..\..\Downloads\Ethnessa-win-x64-Release(1)\bin\TerrariaServer.dll</HintPath>
+      <HintPath>..\..\Downloads\Ethnessa-win-x64-Release\bin\TerrariaServer.dll</HintPath>
     </Reference>
   </ItemGroup>
 

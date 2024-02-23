@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using EthnessaAPI;
+using EthnessaAPI.Hooks;
 using EthnessaRelay.Commands;
 using EthnessaRelay.Configuration;
 using Terraria;
@@ -22,7 +23,7 @@ namespace EthnessaRelay
         
         public EthnessaRelay(Main game) : base(game)
         {
-            Order = 0;
+
         }
 
         public override void Initialize()
@@ -30,7 +31,28 @@ namespace EthnessaRelay
             Config = RelaySettings.Load();
             
             // we are initializing the bot in the OnServerLoaded method, because we want to prevent the bot from sending messages before the world has been loaded
-            ServerApi.Hooks.GameInitialize.Register(this, OnServerLoaded);
+            ServerApi.Hooks.GamePostInitialize.Register(this, OnServerLoaded);
+            EthnessaAPI.Hooks.PlayerHooks.PlayerChat += OnPlayerChat;
+            ServerApi.Hooks.NetGreetPlayer.Register(this, OnPlayerJoin);
+            ServerApi.Hooks.ServerLeave.Register(this,OnPlayerLeave);
+        }
+
+        private void OnPlayerJoin(GreetPlayerEventArgs args)
+        {
+            if(channel is not null)
+            {
+                channel.SendMessageAsync($"{args.Who} has joined the server");
+            }
+        }
+
+
+
+        private void OnPlayerChat(PlayerChatEventArgs args)
+        {
+            if(channel is not null)
+            {
+                channel.SendMessageAsync(args.TShockFormattedText);
+            }
         }
 
         private void OnServerLoaded(EventArgs args)
