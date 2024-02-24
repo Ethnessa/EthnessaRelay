@@ -23,7 +23,7 @@ public class PlayersOnlineCommand : DiscordCommand
             players.Add(player.Name);
         }
         StringBuilder formattedResponse = new();
-        formattedResponse.Append("There are currently " + ServerBase.Utils.GetActivePlayerCount().ToString() + " players online. ");
+        formattedResponse.AppendLine("**There are currently " + ServerBase.Utils.GetActivePlayerCount().ToString() + " players online.** ");
         formattedResponse.AppendLine(string.Join(',', players));
         await command.RespondAsync(formattedResponse.ToString());
     }

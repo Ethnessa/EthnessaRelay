@@ -7,7 +7,14 @@ public class RelaySettings
 {
     private static string path => Path.Combine(ServerBase.SavePath,"relay.json");
     public string Token { get; set; } = "add your token and channel id here";
+    public string ServerName { get; set; } = "Ethnessa Lobby";
     public ulong ChannelId { get; set; } = 000000;
+    public ulong LogChannelId { get; set; } = 000000;
+    
+    public bool ShowJoinMessages { get; set; } = true;
+    public bool ShowLeaveMessages { get; set; } = true;
+    public bool ShowDeathMessages { get; set; } = true;
+    public bool ShowChatMessages { get; set; } = true;
 
     public static RelaySettings Instance = new();
     

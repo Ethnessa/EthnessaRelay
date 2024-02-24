@@ -1,3 +1,4 @@
+using Discord.WebSocket;
 using EthnessaAPI;
 using EthnessaAPI.Database;
 using EthnessaAPI.Database.Models;
@@ -40,6 +41,19 @@ public static class UserAuthentication
         });
 
         return true;
+    }
+    
+    public static SocketGuildUser? GetDiscordUserFromAccountId(int ethnessaAccountId)
+    {
+        var accountLink = authentication.Find(x => x.EthnessaId == ethnessaAccountId).FirstOrDefault();
+        if(accountLink is null)
+        {
+            return null;
+        }
+        
+        var user = EthnessaRelay.Channel?.Guild.GetUser(accountLink.DiscordId);
+
+        return user;
     }
     
     public static async Task<UserAccount?> GetUserAccountFromDiscord(ulong discordId)
